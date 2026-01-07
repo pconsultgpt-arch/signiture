@@ -79,6 +79,12 @@ function fileToCanvasDataUrl(file, width, height, callback) {
   reader.readAsDataURL(file);
 }
 
+function normalizeLink(value) {
+  if (!value) return "";
+  if (/^https?:\/\//i.test(value)) return value;
+  return `https://${value}`;
+}
+
 function renderSignature() {
   const data = {
     name: elements.name.value || placeholders[state.language].name,
@@ -102,7 +108,7 @@ function renderSignature() {
     .filter((item) => item.icon && item.link)
     .map(
       (item) => `
-        <a href="${item.link}" target="_blank" rel="noopener">
+        <a href="${normalizeLink(item.link)}" target="_blank" rel="noopener">
           <img src="${item.icon}" alt="social icon" />
         </a>
       `
