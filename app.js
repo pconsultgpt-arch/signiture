@@ -318,6 +318,10 @@ function openSignaturePreview() {
         border: 1px solid #e2e8f0;
         padding: 2px;
       }
+      @media (max-width: 600px) {
+        .signature { flex-direction: column; align-items: flex-start; }
+        .signature.rtl { align-items: flex-end; }
+      }
     </style>
   `;
   previewWindow.document.open();
