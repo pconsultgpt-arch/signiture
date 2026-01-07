@@ -16,6 +16,7 @@ const elements = {
   titleSize: document.getElementById("titleSize"),
   contactSize: document.getElementById("contactSize"),
   socialSize: document.getElementById("socialSize"),
+  socialIconSize: document.getElementById("socialIconSize"),
   logoUpload: document.getElementById("logoUpload"),
   socialList: document.getElementById("socialList"),
   addSocial: document.getElementById("addSocial"),
@@ -70,6 +71,7 @@ function renderSignature() {
     title: elements.titleSize.value || 14,
     contact: elements.contactSize.value || 13,
     social: elements.socialSize.value || 12,
+    socialIcon: elements.socialIconSize.value || 18,
   };
 
   const socialsHtml = state.socials
@@ -86,7 +88,7 @@ function renderSignature() {
   const signatureHtml = `
     <div class="signature ${state.language === "fa" ? "rtl" : ""}">
       <img class="logo" src="${state.logo || "https://dummyimage.com/285x70/e2e8f0/64748b&text=Logo"}" alt="Logo" />
-      <div class="details" style="--name-size:${fontSizes.name}px; --title-size:${fontSizes.title}px; --contact-size:${fontSizes.contact}px; --social-size:${fontSizes.social}px;">
+      <div class="details" style="--name-size:${fontSizes.name}px; --title-size:${fontSizes.title}px; --contact-size:${fontSizes.contact}px; --social-size:${fontSizes.social}px; --social-icon-size:${fontSizes.socialIcon}px;">
         <div class="name">${data.name}</div>
         <div class="title">${data.title} • ${data.company}</div>
         <div class="meta frame">
@@ -190,6 +192,7 @@ function resetForm() {
   elements.titleSize.value = 14;
   elements.contactSize.value = 13;
   elements.socialSize.value = 12;
+  elements.socialIconSize.value = 18;
   elements.logoUpload.value = "";
   state.logo = "";
   state.socials = [];
@@ -221,6 +224,7 @@ function copySignature() {
   elements.titleSize.addEventListener(eventName, renderSignature);
   elements.contactSize.addEventListener(eventName, renderSignature);
   elements.socialSize.addEventListener(eventName, renderSignature);
+  elements.socialIconSize.addEventListener(eventName, renderSignature);
 });
 
 if (elements.logoUpload) {

@@ -336,6 +336,7 @@ button {
   --title-size: 14px;
   --contact-size: 13px;
   --social-size: 12px;
+  --social-icon-size: 18px;
 }
 
 .signature .name {
@@ -408,8 +409,8 @@ button {
 }
 
 .signature .socials img {
-  width: 18px;
-  height: 18px;
+  width: var(--social-icon-size);
+  height: var(--social-icon-size);
   object-fit: contain;
   background: #fff;
   border-radius: 999px;
