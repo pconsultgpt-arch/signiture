@@ -231,15 +231,110 @@ function resetForm() {
   renderSignature();
 }
 
-function copySignature() {
+function openSignaturePreview() {
   const signature = elements.signaturePreview.dataset.signature;
   if (!signature) return;
-  navigator.clipboard.writeText(signature).then(() => {
-    elements.copyHtml.textContent = "Copied!";
-    setTimeout(() => {
-      elements.copyHtml.textContent = "Copy HTML signature";
-    }, 1500);
-  });
+  const previewWindow = window.open("", "_blank", "noopener,noreferrer");
+  if (!previewWindow) return;
+  const signatureStyles = `
+    <style>
+      body { margin: 0; padding: 40px; background: #f8fafc; font-family: "Segoe UI", Arial, sans-serif; }
+      .signature {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #0f172a;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(168, 85, 247, 0.08));
+        border-radius: 16px;
+        padding: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+      }
+      .signature.rtl { direction: rtl; text-align: right; }
+      .signature .logo {
+        width: 285px;
+        height: 70px;
+        object-fit: contain;
+        border-radius: 10px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.12);
+      }
+      .signature .details {
+        display: grid;
+        gap: 6px;
+        --name-size: 18px;
+        --title-size: 14px;
+        --contact-size: 13px;
+        --social-size: 12px;
+        --social-icon-size: 18px;
+      }
+      .signature .name { font-weight: 700; font-size: var(--name-size); color: #0f172a; }
+      .signature .title { color: #475569; font-size: var(--title-size); }
+      .signature .meta { display: grid; gap: 8px; color: #334155; font-size: var(--contact-size); }
+      .signature .meta-row { display: grid; grid-template-columns: 18px 1fr; align-items: center; gap: 8px; }
+      .signature .icon {
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #2563eb;
+      }
+      .signature .icon svg { width: 100%; height: 100%; fill: currentColor; }
+      .signature .frame {
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #ffffff;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.2);
+      }
+      .signature .socials {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        width: fit-content;
+      }
+      .signature .socials a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #2563eb;
+        text-decoration: none;
+        font-size: var(--social-size);
+      }
+      .signature .socials img {
+        width: var(--social-icon-size);
+        height: var(--social-icon-size);
+        object-fit: contain;
+        background: #fff;
+        border-radius: 999px;
+        border: 1px solid #e2e8f0;
+        padding: 2px;
+      }
+    </style>
+  `;
+  previewWindow.document.open();
+  previewWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="${state.language}">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Signature Preview</title>
+        ${signatureStyles}
+      </head>
+      <body>
+        ${signature}
+      </body>
+    </html>
+  `);
+  previewWindow.document.close();
 }
 
 ["input", "change"].forEach((eventName) => {
@@ -268,7 +363,7 @@ if (elements.logoUpload) {
 
 elements.addSocial.addEventListener("click", addSocialRow);
 
-elements.copyHtml.addEventListener("click", copySignature);
+elements.copyHtml.addEventListener("click", openSignaturePreview);
 
 elements.reset.addEventListener("click", resetForm);
 
