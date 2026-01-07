@@ -55,6 +55,30 @@ function fileToDataUrl(file, callback) {
   reader.readAsDataURL(file);
 }
 
+function fileToCanvasDataUrl(file, width, height, callback) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const image = new Image();
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, width, height);
+      const scale = Math.min(width / image.width, height / image.height);
+      const drawWidth = image.width * scale;
+      const drawHeight = image.height * scale;
+      const offsetX = (width - drawWidth) / 2;
+      const offsetY = (height - drawHeight) / 2;
+      ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+      callback(canvas.toDataURL("image/png"));
+    };
+    image.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+}
+
 function renderSignature() {
   const data = {
     name: elements.name.value || placeholders[state.language].name,
@@ -229,7 +253,7 @@ function copySignature() {
 
 if (elements.logoUpload) {
   elements.logoUpload.addEventListener("change", (event) => {
-    fileToDataUrl(event.target.files[0], (dataUrl) => {
+    fileToCanvasDataUrl(event.target.files[0], 285, 70, (dataUrl) => {
       state.logo = dataUrl;
       renderSignature();
     });
