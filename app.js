@@ -89,11 +89,39 @@ function renderSignature() {
       <div class="details" style="--name-size:${fontSizes.name}px; --title-size:${fontSizes.title}px; --contact-size:${fontSizes.contact}px; --social-size:${fontSizes.social}px;">
         <div class="name">${data.name}</div>
         <div class="title">${data.title} • ${data.company}</div>
-        <div class="meta">
-          <span>${data.email}</span>
-          <span>${data.phone}</span>
-          <span>${data.website}</span>
-          <span>${data.address}</span>
+        <div class="meta frame">
+          <div class="meta-row">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v12h3V6H6zM14 7a2 2 0 0 1 2-2h2.5A1.5 1.5 0 0 1 20 6.5v11a1.5 1.5 0 0 1-1.5 1.5H16a2 2 0 0 1-2-2V7zm2 0v10h2V7h-2z"/>
+              </svg>
+            </span>
+            <span>${data.phone}</span>
+          </div>
+          <div class="meta-row">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6.6 2.5a2 2 0 0 1 2.9.4l2.2 3a2 2 0 0 1-.3 2.7l-1.5 1.2a12.5 12.5 0 0 0 5.3 5.3l1.2-1.5a2 2 0 0 1 2.7-.3l3 2.2a2 2 0 0 1 .4 2.9l-1.3 1.7a3 3 0 0 1-3.2 1.1c-3.2-.8-6.7-2.8-9.7-5.8-3-3-5-6.5-5.8-9.7a3 3 0 0 1 1.1-3.2l1.7-1.3z"/>
+              </svg>
+            </span>
+            <span>${data.email}</span>
+          </div>
+          <div class="meta-row">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.9 9h-3.3a14.7 14.7 0 0 0-2.1-6 8 8 0 0 1 5.4 6zM12 4.1c1.2 1.6 2.2 3.8 2.6 6.9H9.4c.4-3.1 1.4-5.3 2.6-6.9zM4.7 11H4.1a8 8 0 0 1 5.4-6 14.7 14.7 0 0 0-2.1 6zm0 2a14.7 14.7 0 0 0 2.1 6 8 8 0 0 1-2.7-2.1A8 8 0 0 1 4.1 13h.6zm4.7 6.9a14.6 14.6 0 0 1-2.6-6.9h5.2c-.4 3.1-1.4 5.3-2.6 6.9zm1.9 0c1.2-1.6 2.2-3.8 2.6-6.9h5.2a14.6 14.6 0 0 1-2.6 6.9 8 8 0 0 1-5.2 0zM16.5 13h3.3a8 8 0 0 1-5.4 6 14.7 14.7 0 0 0 2.1-6z"/>
+              </svg>
+            </span>
+            <span>${data.website}</span>
+          </div>
+          <div class="meta-row">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2a7 7 0 0 1 7 7c0 4.2-4.4 9.4-6.2 11.4a1 1 0 0 1-1.6 0C9.4 18.4 5 13.2 5 9a7 7 0 0 1 7-7zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+              </svg>
+            </span>
+            <span>${data.address}</span>
+          </div>
         </div>
         <div class="socials">${socialsHtml}</div>
       </div>
