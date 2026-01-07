@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signature Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Front-end signature builder</p>
+          <h1>Google Signature Studio</h1>
+          <p>
+            Build a modern Gmail signature with a rectangular logo, social icons, and
+            bilingual layout support. Copy the HTML into Gmail in seconds.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2>Quick actions</h2>
+          <ul>
+            <li>Upload a rectangular logo.</li>
+            <li>Add social icons & links.</li>
+            <li>Switch between English & فارسی (RTL).</li>
+          </ul>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="panel">
+          <h2>Signature details</h2>
+          <div class="tabs">
+            <button class="tab active" data-language="en">English</button>
+            <button class="tab" data-language="fa">فارسی</button>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Full name
+              <input type="text" id="nameInput" placeholder="e.g. Sarah Malik" />
+            </label>
+            <label>
+              Job title
+              <input type="text" id="titleInput" placeholder="e.g. Product Designer" />
+            </label>
+            <label>
+              Company
+              <input type="text" id="companyInput" placeholder="e.g. Signiture Studio" />
+            </label>
+            <label>
+              Email
+              <input type="email" id="emailInput" placeholder="you@example.com" />
+            </label>
+            <label>
+              Phone
+              <input type="text" id="phoneInput" placeholder="+98 21 0000 0000" />
+            </label>
+            <label>
+              Website
+              <input type="text" id="websiteInput" placeholder="www.example.com" />
+            </label>
+            <label class="full-width">
+              Address
+              <input type="text" id="addressInput" placeholder="Tehran, Iran" />
+            </label>
+          </div>
+
+          <div class="upload-card">
+            <div>
+              <h3>Rectangular logo</h3>
+              <p>Recommended size: 320 × 120px PNG/SVG.</p>
+            </div>
+            <input type="file" id="logoUpload" accept="image/*" />
+          </div>
+
+          <div class="social-section">
+            <div class="social-header">
+              <div>
+                <h3>Social icons</h3>
+                <p>Upload an icon image and link to your profile.</p>
+              </div>
+              <button id="addSocial" class="ghost">Add social</button>
+            </div>
+            <div id="socialList" class="social-list"></div>
+          </div>
+
+          <div class="actions">
+            <button id="copyHtml" class="primary">Copy HTML signature</button>
+            <button id="reset" class="ghost">Reset</button>
+          </div>
+          <p class="hint">
+            In Gmail, open Settings → See all settings → Signature → Create new. Paste the
+            copied HTML.
+          </p>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="preview-header">
+            <h2>Live preview</h2>
+            <span id="directionBadge" class="badge">LTR</span>
+          </div>
+          <div class="signature-preview" id="signaturePreview"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="socialTemplate">
+      <div class="social-row">
+        <div class="upload">
+          <input type="file" class="social-icon" accept="image/*" />
+          <span>Upload icon</span>
+        </div>
+        <input type="text" class="social-label" placeholder="Label (e.g. LinkedIn)" />
+        <input type="text" class="social-link" placeholder="https://" />
+        <button class="remove">Remove</button>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
