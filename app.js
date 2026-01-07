@@ -232,9 +232,10 @@ function resetForm() {
 }
 
 function openSignaturePreview() {
+  renderSignature();
   const signature = elements.signaturePreview.dataset.signature;
   if (!signature) return;
-  const previewWindow = window.open("", "_blank", "noopener,noreferrer");
+  const previewWindow = window.open("", "_blank");
   if (!previewWindow) return;
   const signatureStyles = `
     <style>
